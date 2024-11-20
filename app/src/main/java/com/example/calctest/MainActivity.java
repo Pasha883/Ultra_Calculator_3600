@@ -13,90 +13,97 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.example.calctest.databinding.ActivityMainBinding;
+
 import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
-    EditText text1;
-    EditText text2;
+    
+    ActivityMainBinding binding;
+    
+    /*EditText binding.name;
+    EditText binding.name2;
     Button plus;
     Button minus;
     Button umn;
     Button fraction;
-    TextView enter;
+    TextView binding.enter;*/
 
     @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-
-        enter = findViewById(R.id.enter);
-        text1 = findViewById(R.id.name);
-        text2 = findViewById(R.id.name2);
+        binding = ActivityMainBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
+    
+        
+        /*binding.enter = findViewById(R.id.binding.enter);
+        binding.name = findViewById(R.id.name);
+        binding.name2 = findViewById(R.id.name2);
 
         plus = findViewById(R.id.pl);
         minus = findViewById(R.id.min);
         umn = findViewById(R.id.umn);
-        fraction = findViewById(R.id.fract);
+        fraction = findViewById(R.id.fract);*/
 
-        plus.setOnClickListener(v -> {
+        binding.pl.setOnClickListener(v -> {
             try {
-                double a = Double.parseDouble(text1.getText().toString());
-                double b = Double.parseDouble(text2.getText().toString());
+                double a = Double.parseDouble(binding.name.getText().toString());
+                double b = Double.parseDouble(binding.name.getText().toString());
                 double c = a + b;
-                enter.setText(String.format(Locale.US,"%.3f", c));
+                binding.enter.setText(String.format(Locale.US,"%.3f", c));
 
-                text1.setText("");
-                text2.setText("");
+                binding.name.setText("");
+                binding.name2.setText("");
             }
             catch (Exception e){
-                enter.setText("Invalid, try again");
+                binding.enter.setText("Invalid, try again");
             }
         });
-        minus.setOnClickListener(v -> {
+        binding.min.setOnClickListener(v -> {
             try {
-                double a = Double.parseDouble(text1.getText().toString());
-                double b = Double.parseDouble(text2.getText().toString());
+                double a = Double.parseDouble(binding.name.getText().toString());
+                double b = Double.parseDouble(binding.name2.getText().toString());
                 double c = a - b;
-                enter.setText(String.format(Locale.US,"%.3f", c));
+                binding.enter.setText(String.format(Locale.US,"%.3f", c));
 
-                text1.setText("");
-                text2.setText("");
+                binding.name.setText("");
+                binding.name2.setText("");
             }
             catch (Exception e){
-                enter.setText("Invalid, try again");
+                binding.enter.setText("Invalid, try again");
             }
         });
-        umn.setOnClickListener(v -> {
+        binding.umn.setOnClickListener(v -> {
             try {
-                double a = Double.parseDouble(text1.getText().toString());
-                double b = Double.parseDouble(text2.getText().toString());
+                double a = Double.parseDouble(binding.name.getText().toString());
+                double b = Double.parseDouble(binding.name2.getText().toString());
                 double c = a * b;
-                enter.setText(String.format(Locale.US,"%.3f", c));
+                binding.enter.setText(String.format(Locale.US,"%.3f", c));
 
-                text1.setText("");
-                text2.setText("");
+                binding.name.setText("");
+                binding.name2.setText("");
             }
             catch (Exception e){
-                enter.setText("Invalid, try again");
+                binding.enter.setText("Invalid, try again");
             }
         });
-        fraction.setOnClickListener(v -> {
+        binding.fract.setOnClickListener(v -> {
             try {
-                double a = Double.parseDouble(text1.getText().toString());
-                double b = Double.parseDouble(text2.getText().toString());
+                double a = Double.parseDouble(binding.name.getText().toString());
+                double b = Double.parseDouble(binding.name2.getText().toString());
                 if(b != 0) {
                     double c = a / b;
-                    enter.setText(String.format(Locale.US,"%.3f", c));
+                    binding.enter.setText(String.format(Locale.US,"%.3f", c));
                 }
                 else{
-                    enter.setText("Zero division");
+                    binding.enter.setText("Zero division");
                 }
-                text1.setText("");
-                text2.setText("");
+                binding.name.setText("");
+                binding.name2.setText("");
             }
             catch (Exception e){
-                enter.setText("Invalid, try again");
+                binding.enter.setText("Invalid, try again");
             }
         });
     }
